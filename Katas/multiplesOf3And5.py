@@ -17,10 +17,10 @@ def hacerTabla_aux(n, diferencia):
 
 def hacerTabla(n):
     grid = []
-    
+
     medio = n/2 + 1
     act = 0
-    
+
     while act < medio-1:
         grid.append(hacerTabla_aux(n, act))
         act+=1
@@ -31,13 +31,10 @@ def hacerTabla(n):
 
     return grid
 
-def mover(posicion, direccion):
-    pass
-
-def sePuede(posicion, pasosAct):
-    pass
 
 def is_valid_walk(walk):
+    if len(walk) != 10:
+        return False
     grid = [
         [10, 9, 8, 7, 6, 5, 6, 7, 8, 9, 10],
         [9, 8, 7, 6, 5, 4, 5, 6, 7, 8, 9],
@@ -62,7 +59,6 @@ def is_valid_walk(walk):
             if posicion != [5,5]:
                 valido = False
             else:
-
                 break
         # Si ya no se puede llegar al centro
         elif pasosAct > 10 - grid[posicion[0]][posicion[1]]:
@@ -71,24 +67,23 @@ def is_valid_walk(walk):
         else:
             actual = walk.pop(0)
             pasosAct += 1
-            print(actual, pasosAct)
             if actual == "n":
-                if sePuede(posicion, actual):
+                if posicion[0] != 0:
                     posicion[1] += 1
                 else:
                     valido = False
             elif actual == "s":
-                if sePuede(posicion,actual):
+                if posicion[0] != 10:
                     posicion[1] -= 1
                 else:
                     valido = False
-            if actual == "w":
-                if sePuede(posicion, actual):
+            elif actual == "w":
+                if posicion[1] != 0:
                     posicion[0] -= 1
                 else:
                     valido = False
             elif actual == "e":
-                if sePuede(posicion,actual):
+                if posicion[1] != 10:
                     posicion[0] += 1
                 else:
                     valido = False
@@ -96,7 +91,7 @@ def is_valid_walk(walk):
     return valido
 
 if __name__ == "__main__":
-    is_valid_walk(['n','s','n','s','n','s','n','s','n','s'])
+    print(is_valid_walk(['n', 'e', 'e', 'w', 's', 'w', 'w', 'e']))
 
 
 
