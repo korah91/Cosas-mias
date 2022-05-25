@@ -14,7 +14,7 @@ white = (255, 255, 255)
 gray = (128, 128, 128)
 green = (0, 255, 0)
 gold = (212, 175, 55)
-
+blue = (0, 255, 255)
 
 screen = pygame.display.set_mode([Width, Height])
 pygame.display.set_caption('BeatMaker')
@@ -78,6 +78,7 @@ def draw_grid(clicked, ):
             # Guardo el rectangulo y sus coordenadas para el collision detection
             boxes.append((rect, (i, j)))
     
+        active = pygame.draw.rect(screen, blue, [beat * ])
     return boxes
 
 run = True
